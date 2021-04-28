@@ -14,6 +14,7 @@ end
 
 # note: require 'devise' after require 'rspec/rails'
 require 'devise'
+require_relative 'support/controller_macros' # or require_relative './controller_macros' if write in `spec/support/devise.rb`
 
 require File.expand_path('../config/environment', __dir__)
 
@@ -73,8 +74,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  
+
   # For Devise > 4.1.1
-  config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::ControllerHelpers, :type => :controller
+  # Use the following instead if you are on Devise <= 4.1.1
+  # config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
 end

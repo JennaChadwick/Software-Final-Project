@@ -10,6 +10,19 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <ul>
+  <% if student_signed_in? %>
+    <li><%= link_to "Hi, #{current_student.email}", edit_student_registration_path %></li>
+    <li><%= link_to 'Sign Out', destroy_student_session_path, method: :delete %></li>
+  <% else %>
+  <li><%= link_to 'Sign In', new_student_session_path %></li>
+  <li><%= link_to 'Sign Up', new_student_registration_path %></li>
+  <% end %>
+</ul>
     <%= yield %>
   </body>
+
 </html>

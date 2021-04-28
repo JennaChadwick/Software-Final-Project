@@ -11,8 +11,11 @@ before_install:
 script:
  - bundle exec rspec
 
- deploy:
+deploy:
   provider: heroku
   api_key: c8e8548f-ecba-4107-a6b2-a3812cbfcb13
   app: jennas-art
   run: "rake db:migrate"
+  run: "git push heroku main"
+  on:
+    branch: main

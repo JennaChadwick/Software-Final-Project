@@ -1,8 +1,9 @@
 require 'rails_helper'
+require_relative '../support/controller_macros' # or require_relative './controller_macros' if write in `spec/support/devise.rb`
 
 RSpec.feature "Projects", type: :feature do
   login_admin
-  
+
   context "Create new project" do
     before(:each) do
       visit new_project_path

@@ -14,5 +14,5 @@ script:
  deploy:
   provider: heroku
   api_key: c8e8548f-ecba-4107-a6b2-a3812cbfcb13
-  app: https://jennas-art.herokuapp.com/
+  app: jennas-art
   run: "rake db:migrate"

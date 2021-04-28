@@ -13,6 +13,6 @@ script:
 
  deploy:
   provider: heroku
-  api_key: YOUT_ACCOUNT_API_HERE
-  app: YOUR_APP_NAME_HERE
+  api_key: c8e8548f-ecba-4107-a6b2-a3812cbfcb13
+  app: https://jennas-art.herokuapp.com/
   run: "rake db:migrate"

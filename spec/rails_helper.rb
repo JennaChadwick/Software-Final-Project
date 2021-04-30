@@ -12,9 +12,9 @@ SimpleCov.start 'rails' do
   add_filter '/spec/' # for rspec
 end
 
-# note: require 'devise' after require 'rspec/rails'
+# Add these after require 'rspec/rails'
 require 'devise'
-require_relative 'support/controller_macros' # or require_relative './controller_macros' if write in `spec/support/devise.rb`
+require_relative 'support/controller_macros'
 
 require File.expand_path('../config/environment', __dir__)
 
@@ -75,9 +75,12 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # For Devise > 4.1.1
-  config.include Devise::Test::ControllerHelpers, :type => :controller
-  # Use the following instead if you are on Devise <= 4.1.1
-  # config.include Devise::TestHelpers, :type => :controller
-  config.extend ControllerMacros, :type => :controller
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+
+ # Add these
+ config.include Devise::Test::ControllerHelpers, :type => :controller
+ config.include FactoryBot::Syntax::Methods
+ config.extend ControllerMacros, :type => :controller
 end

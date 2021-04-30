@@ -1,12 +1,49 @@
 require 'rails_helper'
-require_relative '../support/controller_macros' # or require_relative './controller_macros' if write in `spec/support/devise.rb`
+require_relative '../support/controller_macros.rb'
+
+def log_in
+  visit new_project_path
+  click_link 'Sign up'
+  within("form") do
+    fill_in "Email", with: "testing@test.com"
+    fill_in "Password", with: "123456"
+    fill_in "Password confirmation", with: "123456"
+    click_button "Sign up"
+  end
+  click_link "Sign Out"
+  visit new_project_path
+  within("form") do
+    fill_in "Email", with: "testing@test.com"
+    fill_in "Password", with: "123456"
+    click_button "Log in"
+  end
+end
 
 RSpec.feature "Projects", type: :feature do
-  login_student
+  context "Login" do
+    scenario "should sign up" do
+      visit new_project_path
+      click_link 'Sign up'
+      within("form") do
+        fill_in "Email", with: "testing@test.com"
+        fill_in "Password", with: "123456"
+        fill_in "Password confirmation", with: "123456"
+        click_button "Sign up"
+      end
+      expect(page).to have_content("Welcome! You have signed up successfully.")
+    end
+
+
+    scenario "should log in" do
+      log_in
+      expect(page).to have_content("Signed in successfully.")
+    end
+  end
 
   context "Create new project" do
     before(:each) do
       visit new_project_path
+      log_in
       within("form") do
         fill_in "Title", with: "Test title"
       end
@@ -27,6 +64,7 @@ RSpec.feature "Projects", type: :feature do
   context "Update project" do
     let(:project) { Project.create(title: "Test title", description: "Test content") }
     before(:each) do
+      log_in
       visit edit_project_path(project)
     end
 
@@ -50,6 +88,7 @@ RSpec.feature "Projects", type: :feature do
   context "Remove existing project" do
     let!(:project) { Project.create(title: "Test title", description: "Test content") }
     scenario "remove project" do
+      log_in
       visit projects_path
       click_link "Destroy"
       expect(page).to have_content("Project was successfully destroyed")

@@ -19,3 +19,4 @@ deploy:
  run: "git push heroku master"
  on:
   branch: master
+run: "heroku rake db:migrate"

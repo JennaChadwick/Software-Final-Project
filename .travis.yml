@@ -8,7 +8,7 @@ before_install:
  - gem install bundler:2.2.11
 
 script:
- - bundle exec rspec
+ - rspec
 
 deploy:
  provider: heroku

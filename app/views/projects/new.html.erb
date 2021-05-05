@@ -1,5 +1,10 @@
 <% provide(:page_title, 'New Project') %>
 
+<ul class="nav nav-tabs" role="tablist">
+  <li><%= link_to 'View list', projects_path %></li>
+  <li class="active"><%= link_to 'New Project', new_project_path %></li>
+</ul>
+
 <h1>New Project</h1>
 
 <%= render 'form', project: @project %>

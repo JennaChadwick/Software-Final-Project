@@ -1,7 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <p id="notice"><%= notice %></p>
+    <main role="main">
+
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">
+            <% if student_signed_in? %>
+              <%= "Hello, #{current_student.email}" %>
+            <% else %>
+              Hello, World!
+            <% end %>
+          </h1>
+          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        
+        <div class="row">
+        <% @projects.each do |project| %>
+          <div class="col-md-4">
+          <tr>
+            <td><h2><%= project.title %></h2></td>
+            <td><p><%= project.description %></p></td>
+            <td><%= link_to 'Show', project, class: 'btn btn-primary btn-xs' %></td>
+            <% if student_signed_in? %>
+              <td><%= link_to 'Edit', edit_project_path(project), class: 'btn btn-info btn-xs' %></td>
+              <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+            <% end %>
+            </tr>
+          </div>
+        <% end %>
+        </div>
+        <hr>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="container">
+      <p>Template Credit: <a href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">GetBootstrap Example</a></p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+<!--
 <% provide(:page_title, 'All Projects') %>
 
 <p id="notice"><%= notice %></p>
-
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><%= link_to 'View list', projects_path %></li>
+  <li><%= link_to 'New Project', new_project_path %></li>
+</ul>
 <h1>Projects</h1>
 
 <table>
@@ -24,9 +84,12 @@
         <td><%= project.image %></td>
         <td><%= project.description %></td>
         <td><%= project.slug %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', project, class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Edit', edit_project_path(project), class: 'btn btn-info btn-xs' %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+
+...
+
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +97,5 @@
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New Project', new_project_path, class: 'btn btn-success' %>
+-->

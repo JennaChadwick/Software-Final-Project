@@ -1,31 +1,25 @@
 <% provide(:page_title, @project.title) %>
 
 <p id="notice"><%= notice %></p>
+<main role="main">
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+      <div class="jumbotron">
+        <div class="container">
+          <h2>
+            <%= @project.title %>
+          </h2>
+          <p><center><img src="<%= @project.image %>"></center></p>
+          <p><%= @project.body %></p>
+          <p><strong>Description:</strong>
+          <%= @project.description %></p>
+          <p><center>
+          <% if student_signed_in? %>
+              <td><%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-info btn-xs' %></td>
+              <td><%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+            <% end %>
+          </center></p>
+        </div>
+      </div>
+      </div> <!-- /container -->
 
-<p>
-  <strong>Body:</strong>
-  <%= @project.body %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @project.image %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<p>
-  <strong>Slug:</strong>
-  <%= @project.slug %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+    </main>

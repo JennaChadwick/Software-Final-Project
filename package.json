@@ -1,5 +1,6 @@
 {
   "name": "Software-Final-Project",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "node-sass": "^2.0.1"
 }

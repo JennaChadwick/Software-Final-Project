@@ -279,7 +279,7 @@ DEPENDENCIES
   rails_serve_static_assets
   rspec-rails (~> 3.7)
   sass-rails (~> 6.0)
-  sassc (< 2.1.0)
+  sassc-rails
   selenium-webdriver
   simplecov
   spring

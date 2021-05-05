@@ -42,7 +42,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.6.0'
 gem 'friendly_id', '~> 5.4.0'
 gem 'jquery-rails'
-gem "sassc"
 
 gem 'mini_racer'
 

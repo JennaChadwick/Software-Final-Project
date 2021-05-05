@@ -10,9 +10,6 @@ before_install:
 script:
  - bundle exec rspec
 
-env: 
- - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true 
-
 deploy:
  provider: heroku
  api_key: c8e8548f-ecba-4107-a6b2-a3812cbfcb13
